@@ -1,0 +1,29 @@
+﻿@model  MvcPractice.Models.MemberViewModel
+<table>
+    <tr>
+        <th>Sl</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>ContactNo</th>
+        <th>Types</th>
+    </tr>
+    @{ int i = 1;}
+    @foreach (var member in Model.Members)
+    {
+    <tr>
+        <td>@(i++)</td>
+        <td>@member.Code</td>
+        <td>@member.Name</td>
+        <td>@member.Email</td>
+        <td>@member.ContactNo</td>
+        <td>@member.TypeId</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Member", new { Id = member.Id }, null)
+        </td>
+    </tr>
+    }
+
+</table>
+
+
