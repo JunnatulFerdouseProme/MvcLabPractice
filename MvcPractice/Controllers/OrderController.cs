@@ -21,10 +21,9 @@ namespace MvcPractice.Controllers
         {
             MemberViewModel _memberViewModel = new MemberViewModel();
             OrderViewModel _orderViewModel = new OrderViewModel();
-            _orderViewModel.Orders = _orderManager.GetAll();
-           _orderViewModel.Members = _memberManager.GetAll();
+           
 
-          _orderViewModel.CodeSelectListItems=_memberManager.GetAll()
+            _memberViewModel.MemberSelectListItems = _memberManager.GetAll()
                                                              .Select(c => new SelectListItem()
                                                                {
                                                                       Value = c.Code,
@@ -39,7 +38,7 @@ namespace MvcPractice.Controllers
                    Text = c.Name
                }).ToList();
 
-
+            ViewBag.MemberItemId = _memberViewModel.MemberSelectListItems;
 
             return View(_orderViewModel);
         }
@@ -74,10 +73,10 @@ namespace MvcPractice.Controllers
             }
 
             ViewBag.Message = message;
-            _orderViewModel.Orders = _orderManager.GetAll();
-            _orderViewModel.Members = _memberManager.GetAll();
+            MemberViewModel _memberViewModel = new MemberViewModel();
+         
 
-            _orderViewModel.CodeSelectListItems = _memberManager.GetAll()
+            _memberViewModel.MemberSelectListItems = _memberManager.GetAll()
                                                              .Select(c => new SelectListItem()
                                                              {
                                                                  Value = c.Code,
@@ -90,17 +89,15 @@ namespace MvcPractice.Controllers
                     Value = c.Id.ToString(),
                     Text = c.Name
                 }).ToList();
-
-      
-
+            ViewBag.MemberItemId = _memberViewModel.MemberSelectListItems;
             return View(_orderViewModel);
 
         }
-        public JsonResult GetMemberNameById(int ? memberId)
+        public JsonResult GetMemberDetailsByMemberId(int? memberId)
         {
-            var memberList = _memberManager.GetAll().Where(c => c.Id == memberId).ToList();
-            var name = memberList.Select(c => new { c.Name }).ToList();
-            return Json(name, JsonRequestBehavior.AllowGet);
+            var memberDetails = _memberManager.GetAll().Where(c => c.Id == memberId).ToList();
+            //var products = from p in productList select (new { p.Code });
+            return Json(memberDetails, JsonRequestBehavior.AllowGet);
         }
     }
 }

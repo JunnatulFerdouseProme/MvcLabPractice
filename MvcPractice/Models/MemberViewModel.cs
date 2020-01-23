@@ -30,6 +30,7 @@ namespace MvcPractice.Models
         
         public Type Type { get; set; }
         public List<Member> Members{ get; set; }
+        public List<SelectListItem> MemberSelectListItems { get; set; }
         public List<SelectListItem> TypeSelectListItems{ get; set; }
 
     }

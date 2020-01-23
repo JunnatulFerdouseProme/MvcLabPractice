@@ -64,6 +64,7 @@ namespace MvcPractice.Controllers
 
 
             ViewBag.Message = message;
+            MemberViewModel _memberViewModel = new MemberViewModel();
             memberViewModel.Members = _memberManager.GetAll();
 
             memberViewModel.TypeSelectListItems = _typeManger
@@ -88,6 +89,7 @@ namespace MvcPractice.Controllers
 
             return Json(isExits, JsonRequestBehavior.AllowGet);
         }
+   
 
     }
     

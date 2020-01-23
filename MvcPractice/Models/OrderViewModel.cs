@@ -16,9 +16,11 @@ namespace MvcPractice.Models
         public int FoodItemId { get; set; }
         public  int MemberItemId { get; set; }
         public int UnitPrice { get; set; }
+        [RegularExpression(@"^\d+$(\.\d+)?", ErrorMessage = "Only Positive numaric values are allow")]
         public int Qauntity { get; set; }
         public DateTime Date { get; set; }
         public FoodItem FoodItem { get; set; }
+        public string Code { get; set; }
         public Member Member { get; set; }
         public Type Type { get; set; }
         public List<Member> Members { get; set; }
